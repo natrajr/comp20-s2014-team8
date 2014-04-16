@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>CryptoTicker</title>
+	<meta charset="utf-8">
+	<link rel='stylesheet' href='stylesheets/bootstrap.min.css'>
+ 	<link rel='stylesheet' href='stylesheets/bootstrap-responsive.css'>
+	<link rel="stylesheet" type="text/css" href="stylesheets/currency.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src= "cryptoTracker.js"></script>
+</head>
+
+<body onload="initData()">
+	<h1 id="welcome">Welcome to CryptoTicker</h1>
+	<div id="navigation">
+		<ul class="nav nav-pills nav-justified">
+			<li class="active"><a href="#">Currencies</a></li>
+			<li><a href="#">Marker</a></li>
+			<li><a href="#">News</a></li>
+			<li><a href="#">Profile</a></li>
+		</ul>
+	</div>
+	<h2>Select a Crypto Currency From the List Below</h2>
+
+	<select class="currencyList"></select>
+
+	<h3 id="detailSection"></h3>
+	<div id="coinPrice"></div>
+	<div id= "coinVolume"></div>
+
+</body>
+
+</html>

@@ -19,7 +19,6 @@ function callback() {
 		fillDropDown();
 	}
 	else {
-		alert("Error Retrieving Data");
 	}
 }
 
