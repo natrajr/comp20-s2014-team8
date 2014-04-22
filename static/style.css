@@ -6,3 +6,21 @@
 #navigation {
 	margin-top:10px;
 }
+
+#currencyBody h2, #currencyBody h3 {
+	text-align: center;
+}
+
+#currencyList {
+	position:absolute;
+	margin-left:50%;
+	margin-right:50%;
+}
+
+#detailSection, #coinPrice, #coinVolume{
+	text-align: center;
+}
+
+#currencyBody, #newsBody, #marketBody {
+	background-color:#bdc3c7;
+}

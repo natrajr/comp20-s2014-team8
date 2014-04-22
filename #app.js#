@@ -8,10 +8,6 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.use('/static', express.static(__dirname + '/static'));
 
-app.get('/', function(request,response){
-	response.render('landing.html');
-})
-
 app.get('/currency', function(request,response){
 	response.render('currency.html');
 });
@@ -22,6 +18,10 @@ app.get('/market', function(request,response){
 
 app.get('/news', function(request,response){
 	response.render('news.html');
+});
+
+app.get('/profile', function(request,response){
+	response.render('profile.html');
 });
 
 //MongoDB

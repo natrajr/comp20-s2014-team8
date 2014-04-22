@@ -6,11 +6,16 @@ var currencyData= //{};
 
 
 function initData() {
-	/*xml= new XMLHttpRequest();
-	xml.open("GET", "http://www.cryptocoincharts.info/v2/api/listCoins", true);
-	xml.send(null);
-	xml.onreadystatechange= callback;*/
-	fillDropDown();
+	if (localStorage.getItem("data")===null){
+		xml= new XMLHttpRequest();
+		xml.open("GET", "http://www.cryptocoincharts.info/v2/api/listCoins", true);
+		xml.send(null);
+		xml.onreadystatechange= callback;
+	}
+	else {
+		currencyData = JSON.parse(localStorage.getItem("data"));
+		fillDropDown();
+	}
 }
 
 
@@ -18,6 +23,11 @@ function callback() {
 	if (xml.readyState==4 && xml.status==200) {
 		currencyData=JSON.parse(xml.responseText);
 		fillDropDown();
+		
+		currencyData["timeStamp"] = new Date().getTime();
+		console.log(new Date().getTime());
+		localStorage.setItem("data",JSON.stringify(currencyData));
+		console.log(JSON.parse(localStorage.getItem("data"))["timeStamp"])
 	}
 	else {
 	}
@@ -44,6 +54,6 @@ function displayData() {
 			}
 		}
 		$("#coinPrice").text("The Last Traded Price: "+ coinPrice);
-		$("#coinVolume").text("24 Hour Trading Volume (recalculated to BTC: "+ coinVolume);
+		$("#coinVolume").text("24 Hour Trading Volume (recalculated to BTC): "+ coinVolume);
 	});
 }
