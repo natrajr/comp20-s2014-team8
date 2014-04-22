@@ -1,4 +1,5 @@
 <!doctype html>
+<html>
 
 <head>
 	<meta charset="utf-8">
@@ -7,7 +8,7 @@
 	
 </head>
 
-<body>
+<body onload="initData()">
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
         	<h1 class="text-center">Welcome to CryptoTicker!</h1>
@@ -18,13 +19,45 @@
         		<a class="btn btn-lg btn-success" href="#" role="button">Currency Charts</a>
         		<a class="btn btn-lg btn-success" href="#" role="button">Markets</a>
         	</p>
+        	
+        	<h2 class="text-center"><span class="text-primary">Bitcoin Price Index</span></h2>
+   	
+   			<div class="text-center">
+   				<ul class= "list-unstyled" id="BPI-list">
+  				</ul>
+  			</div>
     	</div>
     </div>
-
-
-
-
 </body>
+
+</html>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
-<script src="../scraper.js"></script>
+
+<script type="text/javascript">
+	var xml;
+	var currencyData={};
+
+	function initData() {
+		xml= new XMLHttpRequest();
+		xml.open("GET", "http://api.coindesk.com/v1/bpi/currentprice.json", true);
+		xml.send(null);
+		xml.onreadystatechange= callback;
+	}
+	function callback() {
+	if (xml.readyState==4 && xml.status==200) {
+		currencyData=JSON.parse(xml.responseText);
+		displayBPI();
+	}
+}
+	
+	function displayBPI() {
+		for (var keys in currencyData["bpi"]) {
+			$("#BPI-list").append("<strong><li>"+currencyData["bpi"][keys]["symbol"]+currencyData["bpi"][keys]["rate_float"]+ "</li></strong>");
+		}
+		
+	}
+
+
+</script>
