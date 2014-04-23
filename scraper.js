@@ -3,12 +3,12 @@
 var request=require("request");
 var cheerio=require("cheerio");
 
-var url= "https://coinmarketcap.com/";
+var url= "http://www.cryptoarticles.com/";
 
-var coinInfo=[];
-var coinName;
-var coinVal;
-var coinSupply;
+//var coinInfo=[];
+//var coinName;
+//var coinVal;
+//var coinSupply;
 
 request(url, function(err, resp, body) {
     if (err) {
@@ -16,11 +16,10 @@ request(url, function(err, resp, body) {
     }
     else {
       	$ = cheerio.load(body);
-       	fillInfo();
+       	getNews();
     }
 });
 
-function fillInfo() {
-	
-	console.log($("no-wrap currency-name a").text());
+function getNews() {
+	console.log($(".summary-title a").text());
 }
