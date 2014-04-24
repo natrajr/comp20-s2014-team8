@@ -21,5 +21,5 @@ request(url, function(err, resp, body) {
 });
 
 function getNews() {
-	console.log($(".summary-title a").text());
+	console.log($("div.summary-title").text());
 }
