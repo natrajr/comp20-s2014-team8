@@ -48,7 +48,6 @@ app.get('/news', function(request,response){
 			};
 			parsedResults.push(metadata);
 		});
-		console.log(parsedResults);
 		response.render('news.ejs', {newsItems: parsedResults});
 	}
 
