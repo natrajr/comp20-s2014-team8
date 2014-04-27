@@ -3,6 +3,7 @@ var app = express();
 //app.use(express.json());
 //app.use(express.urlencoded());
 bodyParser = require('body-parser');
+ejs = require('ejs');
 app.use(bodyParser());
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
@@ -21,7 +22,37 @@ app.get('/market', function(request,response){
 });
 
 app.get('/news', function(request,response){
-	response.render('news.html');
+	var request=require("request");
+	var cheerio=require("cheerio");
+	var url= "http://www.cryptoarticles.com/";
+	request(url, function(err, resp, body) {
+	    if (err) {
+	       console.log(err);
+	    }
+	    else {
+	      	$ = cheerio.load(body);
+	       	getNews();
+	    }
+	});
+
+	function getNews() {
+		var parsedResults = [];
+
+		$('div.summary-title').each(function(i,element){
+			var a = $(this);
+			var title = a.text();
+			var url = a.find("a").attr('href');
+			var metadata = {
+				title:title,
+				url:url
+			};
+			parsedResults.push(metadata);
+		});
+		console.log(parsedResults);
+		response.render('news.ejs', {newsItems: parsedResults});
+	}
+
+	//response.render('news.html');
 });
 
 //MongoDB

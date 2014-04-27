@@ -21,5 +21,17 @@ request(url, function(err, resp, body) {
 });
 
 function getNews() {
-	console.log($("div.summary-title").text());
+	//console.log($("div.summary-title.a").text());
+	var parsedResults = [];
+	$('div.summary-title').each(function(i,element){
+		var a = $(this);
+		var title = a.text();
+		var url = a.find("a").attr('href');
+		var metadata = {
+			title:title,
+			url:url
+		};
+		parsedResults.push(metadata);
+	});
+	console.log(parsedResults);
 }
