@@ -22,7 +22,7 @@
         	<div class="navbar-collapse collapse">
           		<ul class="nav navbar-nav">
 
-            		<li><a href="/landing">Home</a></li>
+            		<li><a href="/">Home</a></li>
             		<li><a href="/news">News</a></li>
             		<li><a href="/currency">Bitcoin Exchange Rates</a></li>
                     <li class="active"><a href="#">Market Data</a></li>
@@ -46,32 +46,4 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script>
-var xml;
-var marketData={};
-
-function initData() {
-    xml= new XMLHttpRequest();
-    xml.open("GET", "http://api.coindesk.com/v1/bpi/historical/close.json", true);
-    xml.send(null);
-    xml.onreadystatechange= callback;
-}
-function callback() {
-    if (xml.readyState==4 && xml.status==200) {
-        marketData=JSON.parse(xml.responseText);
-        initGraph();
-    }
-}
-
-function initGraph() {
-    var dates=[];
-    var count=0;
-    for (var key in marketData["bpi"]) {
-        dates[count]=key;
-        count++;
-    }
-    console.log(dates);
-}
-    //google.load("visualization", "1", {packages:["corechart"]});
-    //google.setOnLoadCallback(drawChart);
-</script>
+<script src="../static/js/market.js"></script>

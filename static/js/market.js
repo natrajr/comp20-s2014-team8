@@ -16,11 +16,12 @@ function callback() {
 
 function initGraph() {
     var dates=[];
-
-    for (keys in marketData[keys]) {
-        dates=marketData[keys];
+    var count=0;
+    for (var key in marketData["bpi"]) {
+        dates[count]=key;
+        count++;
     }
     console.log(dates);
+}
     //google.load("visualization", "1", {packages:["corechart"]});
     //google.setOnLoadCallback(drawChart);
-}
