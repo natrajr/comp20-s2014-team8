@@ -1,16 +1,14 @@
 <!doctype html>
-
 <html>
 <head>
 	<title>CryptoTicker</title>
 	<meta charset="utf-8">
 	<link rel='stylesheet' href='../static/bootstrap.min.css'>
-
-
+	<link rel='stylesheet' type="text/css" href='../static/bootstrap.min.css'>
 
 </head>
 
-<body id="marketBody" onload="initData()">
+<body onload="initData()">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       	<div class="container">
         	<div class="navbar-header">
@@ -26,43 +24,43 @@
           		<ul class="nav navbar-nav">
             		<li><a href="./landing.html">Home</a></li>
             		<li><a href="./news.html">News</a></li>
-            		<li><a href="./currency.html">Bitcoin Exchange Rates</a></li>
-                    <li class="active"><a href="#">Market Data</a></li>
-                </ul>
-        	</div>
-        </div>
-    </div>
+            		<li class="active"><a href="#">Exchange Rates</a></li>
+            		<li><a href="./market.html">Market Data</a></li>
+            	</ul>
+			</div>
+		</div>
+	</div>
 
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
-        	<h1 class="text-center">Market Data</h1>
-        	<p class="text-center">Explore historical Bitcoin Data and learn about the numerous cryptocurrencies other than bitcoin.</p>
+<<<<<<< HEAD
+        	<h1 class="text-center">Exchange Rates and Charts</h1>
+        	<p class="text-center">View Current Cryptocurrency Exchange Rates</p>
+=======
+        	<h1 class="text-center">Exchange Rates Chart</h1>
+        	<p class="text-center">Current Bitcoin Exchange Rates</p>
+>>>>>>> adc5940760d20816b73a6011dbc5a8005d1f5c5f
         </div>
     </div>
 
+    <div class="table-responsive">
+    	<table class="table table-hover">
+    		<thead>
+    			<tr>
+    				<th>Currency</th>
+    				<th>15 Minute Delayed Market Price</th>
+    				<th>Buying Price</th>
+    				<th>Selling Price</th>
+    			</tr>
+    		</thead>
+    		<tbody id="data">
+    		</tbody>
+    	</table>
+    </div>
 
 </body>
 
 </html>
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    var xml;
-    var marketData={};
-
-    function initData() {
-        xml= new XMLHttpRequest();
-        xml.open("GET", "http://api.coindesk.com/v1/bpi/historical/close.json", true);
-        xml.send(null);
-        xml.onreadystatechange= callback;
-    }
-    function callback() {
-    if (xml.readyState==4 && xml.status==200) {
-        marketData=JSON.parse(xml.responseText);
-        console.log(marketData);
-    }
-}
-
-
-</script>
+<script src="../static/js/currency.js"></script>
