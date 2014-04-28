@@ -27,7 +27,7 @@
             		<li><a href="./landing.html">Home</a></li>
             		<li><a href="./news.html">News</a></li>
             		<li><a href="./currency.html">Bitcoin Exchange Rates</a></li>
-                    <li class="active"><a href="#">Alternative Currencies</a></li>
+                    <li class="active"><a href="#">Market Data</a></li>
                 </ul>
         	</div>
         </div>
@@ -35,11 +35,11 @@
 
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
-        	<h1 class="text-center">Alternative Crytocurrencies</h1>
-        	<p class="text-center">View information on the numerous cryptocurrencies other than bitcoin. Explore how profitable these currencies may or may not be!
-        	</p>
+        	<h1 class="text-center">Market Data</h1>
+        	<p class="text-center">Explore historical Bitcoin Data and learn about the numerous cryptocurrencies other than bitcoin.</p>
         </div>
     </div>
+
 
 </body>
 
@@ -47,21 +47,21 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
-
+<script src="Chart.js"></script>
 <script type="text/javascript">
     var xml;
-    var exchangeData={};
+    var marketData={};
 
     function initData() {
         xml= new XMLHttpRequest();
-        xml.open("GET", "https://www.coins-e.com/api/v2/markets/list/0b4d143fc35fbf5a57b9db2af71a338463c3c02f8aa14267c0d175e6", true);
+        xml.open("GET", "http://api.coindesk.com/v1/bpi/historical/close.json", true);
         xml.send(null);
         xml.onreadystatechange= callback;
     }
     function callback() {
     if (xml.readyState==4 && xml.status==200) {
-        exchangeData=JSON.parse(xml.responseText);
-
+        marketData=JSON.parse(xml.responseText);
+        console.log(marketData);
     }
 }
 
