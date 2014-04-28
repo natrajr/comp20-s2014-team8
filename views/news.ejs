@@ -25,7 +25,7 @@
             		<li><a href="/">Home</a></li>
                     <li class="active"><a href="#">News</a></li>
             		<li><a href="/currency">Exchange Rates</a></li>
-            		<li><a href="/market">Alternative Currencies</a></li>
+            		<li><a href="/market">Market Data</a></li>
 
             	</ul>
         	</div>
@@ -35,9 +35,9 @@
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
         	<h1 class="text-center">Crypto Currency News</h1>
-            <ul>
+            <ul class="list-group">
                 <% for (var i = 0; i < newsItems.length; i++){ %>
-                    <li>
+                    <li class="list-group-item">
                     <a href = 
                     <%= "http://www.cryptoarticles.com" + newsItems[i].url %>
                     target = "_blank">
