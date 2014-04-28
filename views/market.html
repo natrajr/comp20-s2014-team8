@@ -54,7 +54,7 @@
 
     function initData() {
         xml= new XMLHttpRequest();
-        xml.open("GET", "http://www.coinwarz.com/v1/api/apikeyinfo?apikey=25e77042129b4e30a2a0212f53086134", true);
+        xml.open("GET", "https://www.coins-e.com/api/v2/markets/list/0b4d143fc35fbf5a57b9db2af71a338463c3c02f8aa14267c0d175e6", true);
         xml.send(null);
         xml.onreadystatechange= callback;
     }
