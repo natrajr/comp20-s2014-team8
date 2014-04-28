@@ -8,7 +8,7 @@
 
 </head>
 
-<body>
+<body onload="initData()">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       	<div class="container">
         	<div class="navbar-header">
@@ -19,13 +19,13 @@
             		<span class="icon-bar"></span>
           		</button>
         	</div>
-        	<a class="navbar-brand" href="/">CryptoTicker</a>
+        	<a class="navbar-brand" href="./landing.html">CryptoTicker</a>
         	<div class="navbar-collapse collapse">
           		<ul class="nav navbar-nav">
-            		<li><a href="/">Home</a></li>
-            		<li><a href="/news">News</a></li>
+            		<li><a href="./landing.html">Home</a></li>
+            		<li><a href="./news.html">News</a></li>
             		<li class="active"><a href="#">Exchange Rates</a></li>
-            		<li><a href="/market">Alternative Currencies</a></li>
+            		<li><a href="./market.html">Alternative Currencies</a></li>
             	</ul>
 			</div>
 		</div>
@@ -33,12 +33,25 @@
 
 	<div class="container theme-showcase" role="main">
 		<div class="jumbotron">
-        	<h1 class="text-center">Exchange Rates and Charts</h1>
-        	<p class="text-center">View Current Bitcoin Exchange Rates and </p>
+        	<h1 class="text-center">Exchange Rates Chart</h1>
+        	<p class="text-center">Current Bitcoin Exchange Rates</p>
         </div>
     </div>
 
-
+    <div class="table-responsive">
+    	<table class="table table-hover">
+    		<thead>
+    			<tr>
+    				<th>Currency</th>
+    				<th>15 Minute Delayed Market Price</th>
+    				<th>Buying Price</th>
+    				<th>Selling Price</th>
+    			</tr>
+    		</thead>
+    		<tbody id="data">
+    		</tbody>
+    	</table>
+    </div>
 
 </body>
 
@@ -55,11 +68,17 @@
 		xml.send(null);
 		xml.onreadystatechange= callback;
 	}
+
 	function callback() {
-	if (xml.readyState==4 && xml.status==200) {
-		exchangeData=JSON.parse(xml.responseText);
-
+		if (xml.readyState==4 && xml.status==200) {
+			exchangeData=JSON.parse(xml.responseText);
+			createTable();
+		}
 	}
-}
 
+	function createTable() {
+		for (keys in exchangeData) {
+			$("#data").append("<tr><td>"+keys+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["15m"]+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["buy"]+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["sell"]+"</td></tr>");	
+		}
+	}
 </script>
