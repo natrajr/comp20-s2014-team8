@@ -50,8 +50,6 @@ app.get('/news', function(request,response){
 		});
 		response.render('news.ejs', {newsItems: parsedResults});
 	}
-
-	//response.render('news.html');
 });
 
 //MongoDB
