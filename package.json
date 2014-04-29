@@ -1,0 +1,36 @@
+{
+  "name": "comp20-s2014-team8",
+  "version": "0.0.0",
+  "description": "Cryptocurrency Ticker",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "~1.0.2",
+    "cheerio": "~0.15.0",
+    "ejs": "~1.0.0",
+    "express": "~4.0.0",
+    "mongodb": "~1.4.0",
+    "request": "~2.34.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuftsdev/comp20-s2014-team8.git"
+  },
+  "engines" : {
+    "node" "0.10.26"
+  },
+  "keywords": [
+    "cryptocurrency",
+    "bitcoin",
+    "ticker"
+  ],
+  "author": "Rohan Natraj and Seth Kahn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuftsdev/comp20-s2014-team8/issues"
+  },
+  "homepage": "https://github.com/tuftsdev/comp20-s2014-team8"
+}
