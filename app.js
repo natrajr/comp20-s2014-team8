@@ -1,7 +1,5 @@
 var express = require('express');
 var app = express();
-//app.use(express.json());
-//app.use(express.urlencoded());
 bodyParser = require('body-parser');
 ejs = require('ejs');
 app.use(bodyParser());
