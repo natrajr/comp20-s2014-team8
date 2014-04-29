@@ -21,19 +21,19 @@ function callback() {
 }
 function createTable() {
 	for (keys in exchangeData) {
-		$("#data").append("<tr><td>"+keys+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["15m"]+"0000"+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["buy"]+"0000"+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["sell"]+"0000"+"</td></tr>");	
+		$("#data").append("<tr><td>"+keys+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["15m"].toFixed(6)+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["buy"].toFixed(6)+"</td><td>"+exchangeData[keys]["symbol"]+exchangeData[keys]["sell"].toFixed(6)+"</td></tr>");	
 	}
 }
 
 function initData2() {
-	if (localStorage.getItem("data")===null){
+	if (localStorage.getItem("data")===null || (new Date().getTime() - JSON.parse(localStorage.getItem("data"))["time"]) > 600000){
 		xml= new XMLHttpRequest();
 		xml.open("GET", "http://www.cryptocoincharts.info/v2/api/listCoins", true);
 		xml.send(null);
 		xml.onreadystatechange= callback2;
 	}
 	else {
-		currencyData = JSON.parse(localStorage.getItem("data"));
+		currencyData = JSON.parse(localStorage.getItem("data"))["data"];
 		fillDropDown();
 	}
 }
@@ -44,10 +44,7 @@ function callback2() {
 		currencyData=JSON.parse(xml.responseText);
 		fillDropDown();
 		
-		currencyData["timeStamp"] = new Date().getTime();
-		console.log(new Date().getTime());
-		localStorage.setItem("data",JSON.stringify(currencyData));
-		console.log(JSON.parse(localStorage.getItem("data"))["timeStamp"])
+		localStorage.setItem("data",JSON.stringify({"data":currencyData,"time":new Date().getTime()}));
 	}
 	else {
 	}
