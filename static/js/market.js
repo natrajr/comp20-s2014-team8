@@ -15,19 +15,17 @@ function callback() {
 }
 
 function initGraph() {
-    var dates=[];
-    var count=0;
+    var dates=[["Date", "Price"]];
+    var count=1;
     for (var key in marketData["bpi"]) {
         dates[count]=new Array(key, marketData["bpi"][key]);
         count++;
     }
+    console.log(dates);
     google.load("visualization", "1", {packages: ["corechart"],callback: drawChart});
 
     function drawChart() {
-        var data=google.visualization.arrayToDataTable([["Date", "Price"], ['2004',  1000],
-          ['2005',  1170],
-          ['2006',  660],
-          ['2007',  1030]]);
+        var data=google.visualization.arrayToDataTable(dates);
         
         var options= {
             title: "Bitcoin Price Index"
