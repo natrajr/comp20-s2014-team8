@@ -2,7 +2,6 @@ var xml;
 var marketData={};
 
 function initData() {
-    google.load("visualization", "1", {packages:["corechart"]});
     xml= new XMLHttpRequest();
     xml.open("GET", "http://api.coindesk.com/v1/bpi/historical/close.json", true);
     xml.send(null);
@@ -22,7 +21,7 @@ function initGraph() {
         dates[count]=new Array(key, marketData["bpi"][key]);
         count++;
     }
-    google.setOnLoadCallback(drawChart);
+    google.load("visualization", "1", {packages: ["corechart"],callback: drawChart});
 
     function drawChart() {
         var data=google.visualization.arrayToDataTable([["Date", "Price"], ['2004',  1000],
