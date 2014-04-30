@@ -7,6 +7,13 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.use('/static', express.static(__dirname + '/static'));
 
+//MongoDB
+var mongo = require('mongodb');
+
+var mongoUri = process.env.MONGOLAB_URI ||
+	process.env.MONGOHQ_URL ||
+	'mongodb://localhost/crypto';
+
 app.get('/', function(request,response){
 	response.render('landing.html');
 })
@@ -46,16 +53,48 @@ app.get('/news', function(request,response){
 			};
 			parsedResults.push(metadata);
 		});
-		response.render('news.ejs', {newsItems: parsedResults});
-	}
+		mongo.Db.connect(mongoUri, function(error, db){
+			db.collection('news', function(err,collection){
+				collection.find().toArray(function(err, items){
+					if(!err){
+						var i = 0;
+						//database empty
+						if (items.length == 0){
+								i = parsedResults.length;
+						}
+						else{
+							while (i < parsedResults.length){
+								//loop until first entry in database found (most recent in database)
+								if (parsedResults[i].title == items[0]["title"]){
+									i++;
+									break;
+								}
+								i++;
+							}
+						}
+						//loop backwards, adding oldest unentered article to database and
+						//adding each more recent entry too
+						for (var j = 0; j < i; j++){
+							var record = {
+								"title" : parsedResults[j].title,
+								"url"   : parsedResults[j].url
+							};
+							collection.insert(record, {safe:true},function(err,records){});
+						}
+					}
+					else{};
+				});
+			});
+		});
+		mongo.Db.connect(mongoUri, function(error, db){
+			db.collection('news', function(err,collection){
+				collection.find().toArray(function(err, items){
+					response.render('news.ejs',{newsItems: items});
+				});
+			});
+		});
+	};
 });
-
-//MongoDB
-var mongo = require('mongodb');
-
-var mongoUri = process.env.MONGOLAB_URI ||
-	process.env.MONGOHQ_URL ||
-	'mongodb://localhost/2048';
 
 var port = Number(process.env.PORT || 3000);
 
