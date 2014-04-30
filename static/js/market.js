@@ -10,11 +10,11 @@ var endDate;
 function specData() {
     startDate=$("#startDate").val();
     endDate=$("#endDate").val();
-    urlParam="http://api.coindesk.com/v1/bpi/historical/close.json?start="+startDate+"&end="+endDate;
+    urlParam="https://api.coindesk.com/v1/bpi/historical/close.json?start="+startDate.toString()+"&end="+endDate.toString();
     xmlSpec=new XMLHttpRequest();
     xmlSpec.open("GET", urlParam, true);
     xmlSpec.send(null);
-    xmlSpec.onreadystatechange=rangeCallback();
+    xmlSpec.onreadystatechange=rangeCallback;
 }
 
 function rangeCallback() {
@@ -24,8 +24,6 @@ function rangeCallback() {
     } 
 }
 function rangeGraph() {
-    console.log("in rangeGraph");
-    document.getElementById("#chart").clear();
     var dates=[["Date", "Price"]];
     var count=1;
     for (var key in rangeData["bpi"]) {
@@ -45,6 +43,7 @@ function rangeGraph() {
         chart.draw(data, options);
     }
 }
+
 function initData() {
     xml= new XMLHttpRequest();
     xml.open("GET", "http://api.coindesk.com/v1/bpi/historical/close.json", true);
@@ -54,6 +53,7 @@ function initData() {
 function callback() {
     if (xml.readyState==4 && xml.status==200) {
         marketData=JSON.parse(xml.responseText);
+        console.log(marketData);
         initGraph();
     }
 }
