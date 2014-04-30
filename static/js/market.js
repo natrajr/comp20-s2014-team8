@@ -53,7 +53,6 @@ function initData() {
 function callback() {
     if (xml.readyState==4 && xml.status==200) {
         marketData=JSON.parse(xml.responseText);
-        console.log(marketData);
         initGraph();
     }
 }

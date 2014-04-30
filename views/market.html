@@ -36,24 +36,11 @@
 		<div class="jumbotron">
         	<h1 class="text-center">Market Data</h1>
         	<p class="text-center">Explore historical Bitcoin Data</p>
-
-            <form class="form-inline" role="form" id="dateForm" onsubmit="specData()" action="#">
-                <div class="form-group">
-                    <label for="startDate">Start Date</label>
-                        <input type="text" class="form-control" id="startDate" placeholder="YYYY-MM-DD">
-                </div>
-                <div class="form-group">
-                    <label for="endDate">End Date</label>
-                        <input type="text" class="form-control" id="endDate" placeholder="YYYY-MM-DD">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
         </div>
     </div>
 
     <div class="text-center">
-    <form class="form-inline" role="form" id="dateForm" onsubmit="specData()" action="#">
+    <div class="form-inline" role="form" id="dateForm" action="#">
         <div class="form-group">
             <label for="startDate">Start Date</label>
                 <input type="text" class="form-control" id="startDate" placeholder="YYYY-MM-DD" required>
@@ -62,8 +49,8 @@
             <label for="endDate">End Date</label>
                 <input type="text" class="form-control" id="endDate" placeholder="YYYY-MM-DD" required>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+        <button class="btn btn-default" onclick="specData()">Submit</button>
+    </div>
     </div>
     <div id="chart"></div>
 
