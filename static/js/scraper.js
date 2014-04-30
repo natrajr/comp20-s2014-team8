@@ -21,7 +21,6 @@ request(url, function(err, resp, body) {
 });
 
 function getNews() {
-	//console.log($("div.summary-title.a").text());
 	var parsedResults = [];
 	$('div.summary-title').each(function(i,element){
 		var a = $(this);
