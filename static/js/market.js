@@ -20,8 +20,8 @@ function initGraph() {
         dates[count]=new Array(key, marketData["bpi"][key]);
         count++;
     }
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(drawChart);
+
+    google.load("visualization", "1", {packages: ["corechart"],callback: drawChart});
 
     function drawChart() {
         var data=google.visualization.arrayToDataTable([["Date", "Price"], ['2004', 1000],
