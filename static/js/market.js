@@ -8,14 +8,13 @@ var startDate;
 var endDate;
 
 function specData() {
-    if ($("#startDate").val()!="" && $("#endDate").val()!="") {
-        document.getElementById("dateForm").submit();
-        urlParam="http://api.coindesk.com/v1/bpi/historical/close.json?start="+startDate+"&end="+endDate;
-        xmlSpec=new XMLHttpRequest();
-        xmlSpec.open("GET", urlParam, true);
-        xmlSpec.send(null);
-        xmlSpec.onreadystatechange=rangeCallback();
-    }
+    startDate=$("#startDate").val();
+    endDate=$("#endDate").val();
+    urlParam="http://api.coindesk.com/v1/bpi/historical/close.json?start="+startDate+"&end="+endDate;
+    xmlSpec=new XMLHttpRequest();
+    xmlSpec.open("GET", urlParam, true);
+    xmlSpec.send(null);
+    xmlSpec.onreadystatechange=rangeCallback();
 }
 
 function rangeCallback() {
@@ -25,6 +24,8 @@ function rangeCallback() {
     } 
 }
 function rangeGraph() {
+    console.log("in rangeGraph");
+    document.getElementById("#chart").clear();
     var dates=[["Date", "Price"]];
     var count=1;
     for (var key in rangeData["bpi"]) {
@@ -76,15 +77,5 @@ function initGraph() {
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart'));
         chart.draw(data, options);
-    }
-}
-function getStart() {
-    if ($("#startDate").val()!="") {
-        startDate=$("#startDate").val();
-    }
-}
-function getEnd() {
-    if ($("#endDate").val()!="") {
-        endDate=$("#endDate").val();
     }
 }
