@@ -1,5 +1,20 @@
+//powered by coindesk
 var xml;
 var marketData={};
+var xmlSpec;
+var rangeData={};
+var urlParam;
+
+
+function specData() {
+    if ($("#startDate").val()!="" && $("#endDate").val()!="") {
+        urlParam="http://api.coindesk.com/v1/bpi/historical/close.json?start="+$("#startDate").val()+"&end="+$("#endDate").val();
+        console.log(urlParam);
+    }
+    else {
+        alert("Enter Dates");
+    }
+}
 
 function initData() {
     xml= new XMLHttpRequest();
@@ -34,4 +49,3 @@ function initGraph() {
         chart.draw(data, options);
     }
 }
-

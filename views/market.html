@@ -36,6 +36,17 @@
 		<div class="jumbotron">
         	<h1 class="text-center">Market Data</h1>
         	<p class="text-center">Explore historical Bitcoin Data and learn about the numerous cryptocurrencies other than bitcoin.</p>
+            <form class="form-inline" role="form" id="dateForm">
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                        <input type="text" class="form-control" id="startDate" placeholder="YYYY-MM-DD">
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date</label>
+                        <input type="text" class="form-control" id="endDate" placeholder="YYYY-MM-DD">
+                </div>
+                <button type="submit" class="btn btn-default" onclick="specData()">Submit</button>
+            </form>
         </div>
     </div>
 
@@ -50,3 +61,4 @@
 <script src="../static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script src="../static/js/market.js"></script>
+
