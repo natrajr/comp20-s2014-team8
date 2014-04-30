@@ -21,16 +21,17 @@ function initGraph() {
         dates[count]=new Array(key, marketData["bpi"][key]);
         count++;
     }
-    console.log(dates);
     google.load("visualization", "1", {packages: ["corechart"],callback: drawChart});
 
     function drawChart() {
         var data=google.visualization.arrayToDataTable(dates);
         
         var options= {
-            title: "Bitcoin Price Index"
+            title: "Bitcoin Price Index",
+            curveType: "function"
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart'));
         chart.draw(data, options);
     }
 }
+
