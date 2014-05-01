@@ -15,11 +15,13 @@ function specData() {
     xmlSpec.open("GET", urlParam, true);
     xmlSpec.send(null);
     xmlSpec.onreadystatechange=rangeCallback;
+    xmlSpec.onerror = function(){$("#alert").show();};
 }
 
 function rangeCallback() {
     if (xmlSpec.readyState==4 && xmlSpec.status==200) {
         rangeData=JSON.parse(xmlSpec.responseText);
+        $("#alert").hide();
         rangeGraph();
     } 
 }
