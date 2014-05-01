@@ -92,7 +92,6 @@ app.get('/news', function(request,response){
 			db.collection('news', function(err,collection){
 				collection.find().toArray(function(err, items){
 					newItems = items.reverse();
-					console.log(items);
 					response.render('news.ejs',{newsItems: newItems});
 				});
 			});
